@@ -1,59 +1,240 @@
-This README provides an overview of the Grievance Portal, a Flask-based web application designed to automate the process of filing and managing public grievances using Machine Learning for automated category classification.
+# AI-Powered Grievance Management System
 
-Grievance Portal The Grievance Portal is a web-based platform that allows users to submit complaints regarding public services. The application automatically classifies the complaint into specific departments (e.g., Roads, Sanitation, Water) using a trained AI model and notifies the respective departments via email.
+An intelligent web-based grievance management platform that leverages Machine Learning to automatically classify complaints, route them to the appropriate department, and streamline grievance handling through automated email notifications.
 
-Features:
-User Authentication: Secure registration and login system for both citizens and administrators.
+---
 
-AI-Powered Classification: Automatically predicts the complaint category (e.g., Electricity, Health, Transport) based on the user's description using a TF-IDF vectorizer and a classifier model.
+## Overview
 
-Automated Notifications: Sends an automated email to the relevant department once a complaint is filed.
+The **AI-Powered Grievance Management System** is a full-stack web application designed to simplify and automate the grievance redress process. The system enables users to register, submit complaints, and track their status while automatically classifying grievances into the appropriate department using a trained Machine Learning model.
 
-User Dashboard: Users can track the status of their submitted complaints (Pending, In Progress, or Resolved).
+By integrating AI-based text classification, MongoDB for data management, and SMTP email automation, the platform minimizes manual intervention and improves the efficiency of complaint handling.
 
-Admin Management: Administrators can view all complaints, update their status, and delete records.
+---
 
-Responsive UI: A modern, dark-themed interface built with Bootstrap and custom CSS.
+## Features
 
-Technology Stack:
-Backend: Python, Flask
+- User Registration and Secure Authentication
+- AI-Based Complaint Classification
+- Automatic Department Routing
+- SMTP Email Notifications
+- Complaint Status Tracking
+- User Dashboard
+- Admin Dashboard
+- Complaint Management
+- Responsive User Interface
+- MongoDB Integration
 
-Database: MongoDB (via Flask-PyMongo)
+---
 
-Machine Learning: Scikit-learn (Joblib for model persistence)
+## System Workflow
 
-Email Service: SMTPLIB (Gmail SMTP)
+```text
+User Registration/Login
+          │
+          ▼
+ Submit Complaint
+          │
+          ▼
+ TF-IDF Vectorization
+          │
+          ▼
+ Machine Learning Classifier
+          │
+          ▼
+ Predict Department
+          │
+          ▼
+ Store Complaint in MongoDB
+          │
+          ▼
+ Send Email Notification
+          │
+          ▼
+ Complaint Tracking Dashboard
+```
 
-Frontend: HTML5, CSS3, Jinja2 Templates, Bootstrap
+---
 
-Project Structure:
-Grievance_app/ ├── app.py # Main Flask application logic ├── model/ # Trained ML models and encoders │ ├── complaint_classifier.pkl │ ├── label_encoder.pkl │ └── tfidf_vectorizer.pkl ├── static/ │ └── style.css # Custom styling for the application └── templates/ # Jinja2 HTML templates ├── layout.html # Base layout for all pages ├── index.html # Landing page ├── login.html # Login page ├── register.html # User registration page ├── dashboard.html # User's complaint tracking ├── complaint.html # Form to file a new grievance └── admin.html # Admin management dashboard
+## System Architecture
 
-Setup and Installation:
-Clone the Repository:
+```text
+User
+ │
+ ▼
+Flask Web Application
+ │
+ ├── Authentication
+ ├── Complaint Module
+ ├── Dashboard
+ │
+ ▼
+Machine Learning Pipeline
+ │
+ ├── TF-IDF Vectorizer
+ ├── Complaint Classifier
+ └── Label Encoder
+ │
+ ▼
+MongoDB Database
+ │
+ ▼
+SMTP Email Service
+ │
+ ▼
+Concerned Department
+```
 
-Bash git clone cd Grievance_app Install Dependencies:
+---
 
-Bash pip install flask flask_pymongo werkzeug joblib scikit-learn Database Configuration:
+## Machine Learning Pipeline
 
-Update the MONGO_URI in app.py with your MongoDB Atlas connection string.
+The complaint classification pipeline consists of:
 
-Email Configuration:
+- Text Preprocessing
+- TF-IDF Vectorization
+- Complaint Classification
+- Label Encoding
+- Department Prediction
 
-The system uses a Gmail App Password for notifications. Update the sender and password variables in the send_email function in app.py.
+The trained model classifies complaints into departments such as:
 
-Run the Application:
+- Roads
+- Water Supply
+- Electricity
+- Health
+- Sanitation
+- Transport
+- Public Services
 
-Bash python app.py The app will be available at http://127.0.0.1:5000/.
+---
 
-Usage:
-For Users Register/Login: Create an account to access the dashboard.
+## Technology Stack
 
-File Complaint: Enter a title and a detailed description of the issue.
+### Backend
 
-Track Status: View whether your complaint is being processed or resolved by the department.
+- Python
+- Flask
+- Flask-PyMongo
 
-For Admins Access Dashboard: Log in with administrative credentials.
+### Database
 
-Manage Grievances: Review incoming complaints, update their status (e.g., from "Pending" to "Resolved"), or delete invalid entries.
+- MongoDB
 
+### Machine Learning
+
+- Scikit-learn
+- TF-IDF Vectorizer
+- Joblib
+
+### Frontend
+
+- HTML5
+- CSS3
+- Bootstrap
+- Jinja2 Templates
+
+### Email Service
+
+- SMTP (Gmail)
+
+---
+
+## Project Structure
+
+```text
+Grievance_app/
+│
+├── app.py
+├── model/
+│   ├── complaint_classifier.pkl
+│   ├── tfidf_vectorizer.pkl
+│   └── label_encoder.pkl
+│
+├── static/
+│   └── style.css
+│
+├── templates/
+│   ├── layout.html
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── complaint.html
+│   ├── dashboard.html
+│   └── admin.html
+│
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## Installation
+
+### Clone the repository
+
+```bash
+git clone https://github.com/GowthamRavuri01/ai-grievance-management-system.git
+```
+
+### Navigate to the project directory
+
+```bash
+cd ai-grievance-management-system
+```
+
+### Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Configure
+
+Update the following inside `app.py`:
+
+- MongoDB Connection URI
+- Gmail SMTP Credentials
+
+### Run the application
+
+```bash
+python app.py
+```
+
+The application will be available at:
+
+```
+http://127.0.0.1:5000
+```
+
+---
+
+## Future Enhancements
+
+- JWT Authentication
+- Role-Based Access Control
+- Complaint Priority Prediction
+- Multi-language Complaint Support
+- AI Chatbot Integration
+- REST API Support
+- Docker Deployment
+- Cloud Deployment
+- Analytics Dashboard
+
+---
+
+## Author
+
+**Gowtham Ravuri**
+
+AI Engineer | Computer Vision Engineer | Software Engineer
+
+- GitHub: https://github.com/GowthamRavuri01
+- LinkedIn: https://www.linkedin.com/in/gowthamravuri
+
+---
+
+## License
+
+This project is licensed under the **MIT License**.
